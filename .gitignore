@@ -1,6 +1,7 @@
 
 *.shx
 eagle_owl/Eagle owl Reinhard Vohwinkel MPIO-reference-data.csv
+eagle_owl/Eagle_Owl.csv
 eagle_owl/Eagle owl Reinhard Vohwinkel MPIO.zip
 eagle_owl/Eagle owl Reinhard Vohwinkel MPIO/lines.dbf
 eagle_owl/Eagle owl Reinhard Vohwinkel MPIO/lines.fix
@@ -14,3 +15,12 @@ eagle_owl/Eagle owl Reinhard Vohwinkel MPIO/points.qix
 eagle_owl/Eagle owl Reinhard Vohwinkel MPIO/points.shp
 eagle_owl/.DS_Store
 eagle_owl/license-terms-3780829.html
+*.fix
+eagle_owl/lines.dbf
+eagle_owl/lines.prj
+eagle_owl/lines.shp
+eagle_owl/lines.qix
+eagle_owl/points.dbf
+eagle_owl/points.prj
+eagle_owl/points.qix
+eagle_owl/points.shp
