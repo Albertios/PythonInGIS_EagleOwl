@@ -1,0 +1,84 @@
+from math import sin, cos, sqrt, atan2, radians
+
+
+
+# approximate radius of earth in km
+R = 6373.0
+
+def computeDistance(p1,p2):
+    lat1 = radians(p1[0])
+    lon1 = radians(p1[1])
+    lat2 = radians(p2[0])
+    lon2 = radians(p2[1])
+
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+    distance = R * c
+
+    return distance
+
+  
+  
+
+
+# Funktion soll array ausgeben mit arraylen = jahresanzahl und an zweiter stelle distanz pro jahr
+def computeYearlyDist(years):
+    result = []
+    p1 = []
+    p2 = []
+    
+        
+    for i in years[0]:
+        p2 = [i['lat'],i['long']]
+        
+        if not p1:
+            p1 = p2
+        else:
+            dist = computeDistance(p1,p2)
+            result.append(dist)
+            
+    p1 = p2
+
+    print(sum(result))
+    return result
+    
+
+
+
+def getYears():
+    layer = iface.activeLayer()
+    years = []
+    curYear = []
+    
+    for f in layer.getFeatures():
+        
+        if not curYear:
+            curYear.append(f)
+            year = f['timestamp']
+            year = year[0:4]
+            print(year)
+            
+        else:
+            tempYear = f['timestamp']
+            tempYear = tempYear[0:4]
+            if tempYear == year:
+                curYear.append(f)
+                
+            else:
+                years.append(curYear) # next year
+                year = f['timestamp']
+                year = year[0:4]
+                print(year)
+                
+        
+        years.append(curYear) 
+        
+    return years
+
+years = getYears()
+print(len(years))
+computeYearlyDist(years)
