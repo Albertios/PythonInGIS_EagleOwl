@@ -136,3 +136,9 @@ eagle_owl/1292/1292.qpj
 eagle_owl/1292/1292.prj
 eagle_owl/1292/1292.dbf
 eagle_owl/1292/1292.cpg
+*.dbf
+*.fix
+*.prj
+*.qix
+*.shp
+*.qgz
