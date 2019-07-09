@@ -72,15 +72,18 @@ def computeTable():
 
 owlTable = start()
 
-#dir = "/Users/Alf/Documents/GitHub/PythonInGIS_EagleOwl/"
-#
+dir = "/Users/Alf/Documents/GitHub/PythonInGIS_EagleOwl/"
+
 #f = open(dir + "owlYearDistance.shp", 'w')
-#
-#f.write(owlTable)
+
+#f.write(str(owlTable))
 #f.closed
 
 for x in owlTable:
     print (x)
+    f = open(dir + "owlYearDistance.csv", 'a')
+    f.write(str(x))
+    f.closed
 
 
 
