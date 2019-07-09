@@ -7,7 +7,11 @@ import glob
 os.system("python loadOwls.py")
 
 # Working directory
-data_dir = os.path.join('D:\\', 'Repositories', 'PythonInGIS_EagleOwl', 'eagle_owl')
+#data_dir = os.path.join('D:\\', 'Repositories', 'PythonInGIS_EagleOwl', 'eagle_owl')
+data_dir = os.path.join('/Users/Alf/Documents/GitHub', 'PythonInGIS_EagleOwl', 'eagle_owl', 'owls')
+
+
+
 
 def start():
     
@@ -66,7 +70,14 @@ def computeTable():
     return(years)
     
 
-owlTable = start()   
+owlTable = start()
+
+#dir = "/Users/Alf/Documents/GitHub/PythonInGIS_EagleOwl/"
+#
+#f = open(dir + "owlYearDistance.shp", 'w')
+#
+#f.write(owlTable)
+#f.closed
 
 for x in owlTable:
     print (x)

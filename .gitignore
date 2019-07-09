@@ -142,3 +142,5 @@ eagle_owl/1292/1292.cpg
 *.qix
 *.shp
 *.qgz
+*.cpg
+*.qpj
