@@ -1,5 +1,5 @@
 from math import sin, cos, sqrt, atan2, radians
-
+import numpy as np
 
 
 # approximate radius of earth in km
@@ -31,8 +31,8 @@ def computeYearlyDist(years):
     p1 = []
     p2 = []
     
-        
-    for i in years[0]:
+
+    for i in years:
         p2 = [i['lat'],i['long']]
         
         if not p1:
@@ -42,9 +42,7 @@ def computeYearlyDist(years):
             result.append(dist)
             
     p1 = p2
-
-    print(sum(result))
-    return result
+    return sum(result)
     
 
 
@@ -53,6 +51,7 @@ def getYears():
     layer = iface.activeLayer()
     years = []
     curYear = []
+    noYears = 0
     
     for f in layer.getFeatures():
         
@@ -60,7 +59,7 @@ def getYears():
             curYear.append(f)
             year = f['timestamp']
             year = year[0:4]
-            print(year)
+            #print(year)
             
         else:
             tempYear = f['timestamp']
@@ -69,16 +68,16 @@ def getYears():
                 curYear.append(f)
                 
             else:
-                years.append(curYear) # next year
+                years.append([year ,computeYearlyDist(curYear)]) # next year
                 year = f['timestamp']
                 year = year[0:4]
-                print(year)
+                tempYear = f['timestamp']
+                tempYear = tempYear[0:4]
+                noYears += 1
+                #print(year)
                 
         
-        years.append(curYear) 
+    years.append([tempYear ,computeYearlyDist(curYear)])
         
     return years
-
-years = getYears()
-print(len(years))
-computeYearlyDist(years)
+    
