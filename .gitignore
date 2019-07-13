@@ -146,3 +146,6 @@ eagle_owl/1292/1292.cpg
 *.qpj
 Scripts/.DS_Store
 .DS_Store
+filteredOwlData.txt
+filteredOwlDataLines.csv
+test.txt
