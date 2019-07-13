@@ -17,15 +17,16 @@ def init():
     QgsProject.instance().removeAllMapLayers()
     
     #BaseMap
-    urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
-    rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
+    #urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
+    #rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
+    
     shape_file = os.path.join(data_dir, "points.shp")
     
-    if rlayer.isValid():
-        QgsProject.instance().addMapLayer(rlayer)
-    else:
-        print('invalid layer')
-        
+    #if rlayer.isValid():
+    #    QgsProject.instance().addMapLayer(rlayer)
+    #else:
+    #    print('invalid layer')
+
     # load the shapefile
     shape_layer = iface.addVectorLayer(shape_file, "shape:", "ogr")
     if not shape_layer:
@@ -35,10 +36,12 @@ def init():
 
 def main():
     init()
-
-    fullTable = filteredOwlData()
     
-    distanceTable = getDistances(fullTable)
+    layer = iface.activeLayer()
+    
+    fullTable = filteredOwlData(layer)
+    
+    #distanceTable = getDistances(fullTable)
     
     
     

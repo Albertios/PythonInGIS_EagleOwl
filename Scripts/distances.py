@@ -2,10 +2,13 @@ from math import sin, cos, sqrt, atan2, radians
 import numpy as np
 
 
-# approximate radius of earth in km
+# approx. radius of earth
 R = 6373.0
 
+#computes distance in km between to given points with lat and long
 def computeDistance(p1,p2):
+    
+#adds a distance column to a table
     
     
     lat1 = radians(p1[0])
@@ -28,8 +31,37 @@ def computeDistance(p1,p2):
 def getDistances(table):
     result = []
     
+    curOwl = "" # current Owl. Changes when reaching a new tag ID
+    p1 = []
+    p2 = []
     
+    for f in table:
+        
+        if curOwl == "" :
+            curOwl = f[0]
+            p1 = [f[1], f[2]]
+            np.append(f, "0" )
+            
+        else:
+            if curOwl == f[0]:
+                p2 = [f[1], f[2]]
+                #[f['lat'],f['long']]
+            
+                distance = computeDistance(p1, p2)
+                
+                np.append(f, distance)
+                
+                
+            else:
+                curOwl = ""
+                np.append(f, "0")
+        
+        p1 = p2
+        np.append(result, f)
+        
+    print(result)
     
+    return result
     
     
     
