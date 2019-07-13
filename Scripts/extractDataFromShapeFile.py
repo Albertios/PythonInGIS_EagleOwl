@@ -5,7 +5,7 @@ layer = iface.activeLayer()
 dir = "/Users/Alf/Documents/GitHub/PythonInGIS_EagleOwl/"
 
 #output file name
-output_file = open(dir + "filteredOwlDataLines.csv", 'w')
+output_file = open(dir + "filteredOwlData.csv", 'w')
 
 
 for f in layer.getFeatures():
