@@ -7,14 +7,13 @@ import glob
 os.system("python loadOwls.py")
 
 # Working directory
-#data_dir = os.path.join('D:\\', 'Repositories', 'PythonInGIS_EagleOwl', 'eagle_owl')
-data_dir = os.path.join('/Users/Alf/Documents/GitHub', 'PythonInGIS_EagleOwl', 'eagle_owl', 'owls')
+data_dir = os.path.join('D:\\', 'Repositories', 'PythonInGIS_EagleOwl', 'eagle_owl')
+#data_dir = os.path.join('/Users/Alf/Documents/GitHub', 'PythonInGIS_EagleOwl', 'eagle_owl', 'owls')
 
 
 
 
 def start():
-    
     QgsProject.instance().removeAllMapLayers()
     
     result = []
@@ -45,8 +44,8 @@ def start():
         
         ####################################################################################################
         
-        currentOwl = computeTable()
-    
+        currentOwl = computeMonthTable()
+                
         if len(currentOwl) > 1:
             for tempOwl in currentOwl:
                 finalOwl = np.append(tempOwl, owl)
@@ -57,10 +56,9 @@ def start():
             finalOwl = np.append(currentOwl, owl)
             
             result.append(finalOwl)
-    
         
+                
         ####################################################################################################
-        
     return result
 
    
@@ -69,25 +67,46 @@ def computeTable():
     years = np.array(years)
     return(years)
     
+   
+def computeMonthTable():
+    months = getMonth()
+    months = np.array(months)
+    return(months)
+    
 
-owlTable = start()
 
-dir = "/Users/Alf/Documents/GitHub/PythonInGIS_EagleOwl/"
+
+#dir = "/Users/Alf/Documents/GitHub/PythonInGIS_EagleOwl/"
 
 #f = open(dir + "owlYearDistance.shp", 'w')
 
 #f.write(str(owlTable))
 #f.closed
 
-for x in owlTable:
-    print (x)
-    f = open(dir + "owlYearDistance.csv", 'a')
-    f.write(str(x))
-    f.closed
+def computeDifference():
+    owlTable = start()
+    
+    i = 0
+    while i < len(owlTable) - 1:
+        
+        prevOwl = owlTable[i]
+        nextOwl = owlTable[i+1]
+        val = float(nextOwl[2]) - float(prevOwl[2])
+        
+        if val >= 0 :
+            #ist mehr geworden
+            owlTable[i+1] = np.append(owlTable[i+1], "+")
+        else:
+            owlTable[i+1] = np.append(owlTable[i+1], "-")
+            
+        i += 1
+        
+    return owlTable
+  
+table = computeDifference()
 
-
-
-
+for i in table:
+    print(i)
 
 
 

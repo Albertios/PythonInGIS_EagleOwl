@@ -6,6 +6,8 @@ import numpy as np
 R = 6373.0
 
 def computeDistance(p1,p2):
+    
+    
     lat1 = radians(p1[0])
     lon1 = radians(p1[1])
     lat2 = radians(p2[0])
@@ -27,6 +29,7 @@ def computeDistance(p1,p2):
 
 # Funktion soll array ausgeben mit arraylen = jahresanzahl und an zweiter stelle distanz pro jahr
 def computeYearlyDist(years):
+    
     result = []
     p1 = []
     p2 = []
@@ -75,9 +78,63 @@ def getYears():
                 tempYear = tempYear[0:4]
                 noYears += 1
                 #print(year)
-                
-        
+       
     years.append([tempYear ,computeYearlyDist(curYear)])
-        
+       
     return years
+    
+    
+    
+#Tabelle mit monat bzw monat und jahr und distanz und prozentzahl
+def getMonth():
+    layer = iface.activeLayer()
+    months = []
+    curMonth = []
+    noMonths = 0
+    
+    
+    for f in layer.getFeatures():
+        
+        if not curMonth:                #starting Iteration
+            curMonth.append(f)
+            timestamp = f['timestamp']
+            month = timestamp[5:7]
+            year = timestamp[0:4]
+
+        else:
+            timestamp = f['timestamp']
+            tempMonth = timestamp[5:7]
+            tempYear = timestamp[0:4]
+            
+            if tempYear == year and tempMonth == month:
+                curMonth.append(f)
+                #print(tempMonth)
+                
+            else:
+                months.append([year , month, computeYearlyDist(curMonth)]) # next month computeYearlyDist(curYear)
+                curMonth = []
+                timestamp = f['timestamp']
+                month = timestamp[5:7]
+                tempMonth = timestamp[5:7]
+                year = timestamp[0:4]
+                tempYear = timestamp[0:4]
+                noMonths += 1
+                #print(year)
+
+    months.append([year , month, computeYearlyDist(curMonth)])
+
+    return months
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
