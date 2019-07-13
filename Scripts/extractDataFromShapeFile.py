@@ -23,16 +23,17 @@
 
 ##################create a filtered array#######################
 
-#def filteredOwlData(layer):
+def filteredOwlData(layer):
     
-layer = iface.activeLayer()
+#layer = iface.activeLayer()
     
-owlIdTimestampXY = []
+    owlIdTimestampXY = []
     
-for f in layer.getFeatures():
-    geom = f.geometry()
-    line = int(f['tag_ident']), f['timestamp'], geom.asPoint().y(), geom.asPoint().x()
-    owlIdTimestampXY.append(line)
+    #goes through layer and save the ID, timestamp, coordiantes into 2D array
+    for f in layer.getFeatures():
+        geom = f.geometry()
+        line = int(f['tag_ident']), f['timestamp'], geom.asPoint().y(), geom.asPoint().x()
+        owlIdTimestampXY.append(line)
     
-#return(owlIdTimestampXY)
+    return(owlIdTimestampXY)
     
