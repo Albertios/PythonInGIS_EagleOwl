@@ -37,7 +37,7 @@ def keepDataOverTenDays(fullTable):
                 if month == timeStampString[5:7]:
                     #print("month")
                     if day != timeStampString[8:10]:
-                        print(day)
+                        #print(day)
                         dayCounter +=1
                         endDelete = i
                         day = timeStampString[8:10]
@@ -49,8 +49,8 @@ def keepDataOverTenDays(fullTable):
                     if dayCounter < 10:
                         del(fullTable[startDelete:endDelete])
                         dayCounter = 0
-                        print(startDelete, endDelete)
-                        print(len(fullTable))
+                        #print(startDelete, endDelete)
+                        #print(len(fullTable))
                         #print("delete")
                     startDelete = i
                     dayCounter = 0
