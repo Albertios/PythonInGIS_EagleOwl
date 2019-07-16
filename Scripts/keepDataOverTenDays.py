@@ -1,10 +1,6 @@
 
 def keepDataOverTenDays(fullTable):
 
-    #layer = iface.activeLayer()
-
-    #fullTable = filteredOwlData(layer)
-
     id = 0
     year = "0000"
     month = "00"
@@ -15,8 +11,11 @@ def keepDataOverTenDays(fullTable):
     for i, array in enumerate(fullTable):
 
         if id == array[0]:
-            timeStampString = array[1]
-            if year == timeStampString[:4]:
+            timeStampString = str(array[1])
+            
+            
+            if year == timeStampString[0:4]:
+
                 if month == timeStampString[5:7]:
                     if day != timeStampString[8:10]:
                         dayCounter +=1
@@ -32,11 +31,11 @@ def keepDataOverTenDays(fullTable):
                     startDelete = i
                     dayCounter = 0
             else:
-                year = timeStampString[:4]
+                year = timeStampString[0:4]
         else:
             id = array[0]
-            timeStampString = array[1]
-            year = timeStampString[:4]
+            timeStampString = str(array[1])
+            year = timeStampString[0:4]
             month = timeStampString[5:7]
             day = timeStampString[8:10]
             
@@ -46,5 +45,4 @@ def keepDataOverTenDays(fullTable):
         del(fullTable[startDelete:endDelete])
         
     return(fullTable)
-    
     

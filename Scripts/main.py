@@ -37,16 +37,18 @@ def init():
 
 def main():
     
-    init()
+    #init()
     
     layer = iface.activeLayer()
     
     fullTable = filteredOwlData(layer)
-    print("1")
+
     minimizedTable = keepDataOverTenDays(fullTable)
-    print("2")
+
     distanceTable = getDistances(minimizedTable)
-    print("3")
+
+
+    
     
 main()
 
