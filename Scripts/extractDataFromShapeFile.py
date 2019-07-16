@@ -32,7 +32,7 @@ def filteredOwlData(layer):
     #goes through layer and save the ID, timestamp, coordiantes into 2D array
     for f in layer.getFeatures():
         geom = f.geometry()
-        line = int(f['tag_ident']), f['timestamp'], geom.asPoint().y(), geom.asPoint().x()
+        line = f['tag_ident'], f['timestamp'], geom.asPoint().y(), geom.asPoint().x()
         owlIdTimestampXY.append(line)
     
     return(owlIdTimestampXY)

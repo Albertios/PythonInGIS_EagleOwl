@@ -67,10 +67,6 @@ def getDistances(table):
         #result =  np.column_stack((result, distanceFeature))
         
         
-        
-        
-        if curOwl != '1751':
-            break
     
     return result
 

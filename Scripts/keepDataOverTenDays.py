@@ -1,7 +1,7 @@
 
 def keepDataOverTenDays(fullTable):
 
-    id = 0
+    id = "0"
     year = "0000"
     month = "00"
     day = "00"
