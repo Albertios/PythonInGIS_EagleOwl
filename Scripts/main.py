@@ -11,7 +11,7 @@ os.system("python distances.py")
 
 # Working directory
 data_dir = os.path.join('D:\\', 'Repositories', 'PythonInGIS_EagleOwl', 'eagle_owl')
-#data_dir = os.path.join('/Users/Alf/Documents/GitHub', 'PythonInGIS_EagleOwl', 'eagle_owl', 'owls')
+#data_dir = os.path.join('/Users/Alf/Documents/GitHub', 'PythonInGIS_EagleOwl', 'eagle_owl', 'EagleOwlReinhardVohwinkelMPIO')
 
 def init():
     QgsProject.instance().removeAllMapLayers()
