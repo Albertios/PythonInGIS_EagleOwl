@@ -41,7 +41,9 @@ def main():
     
     fullTable = filteredOwlData(layer)
     
-    distanceTable = getDistances(fullTable)
+    minimizedTable = keepDataOverTenDays(fullTable)
+    
+    distanceTable = getDistances(minimizedTable)
 
     
 main()
