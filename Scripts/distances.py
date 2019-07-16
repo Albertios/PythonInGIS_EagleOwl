@@ -58,14 +58,8 @@ def getDistances(table):
                 curOwl = ""
                 distanceFeature = np.array(np.append(f, 0))
                 result.append(distanceFeature)
+                print(distanceFeature)
     
-        #print(distanceFeature)
-        
-        #print(np.append(result,[distanceFeature]))
-        #temp = np.append(result, np.array(distanceFeature))
-        
-        #result =  np.column_stack((result, distanceFeature))
-        
         
     
     return result
