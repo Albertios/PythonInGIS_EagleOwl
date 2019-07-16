@@ -8,6 +8,7 @@ import glob
 
 os.system("python extractDataFromShapeFile.py")
 os.system("python distances.py")
+os.system("python keepDataOverTenDays.py")
 
 # Working directory
 data_dir = os.path.join('D:\\', 'Repositories', 'PythonInGIS_EagleOwl', 'eagle_owl')
@@ -35,30 +36,19 @@ def init():
     
 
 def main():
+    
     init()
     
     layer = iface.activeLayer()
     
     fullTable = filteredOwlData(layer)
-    
+    print("1")
     minimizedTable = keepDataOverTenDays(fullTable)
-    
+    print("2")
     distanceTable = getDistances(minimizedTable)
-
+    print("3")
     
 main()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
