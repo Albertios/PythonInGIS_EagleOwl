@@ -29,8 +29,8 @@ def computeDistance(p1,p2):
     
     
 def getDistances(table):
-    result = np.array([[]])
-    
+    result = []
+
     curOwl = "" # current Owl. Changes when reaching a new tag ID
     p1 = []
     p2 = []
@@ -40,8 +40,8 @@ def getDistances(table):
         if curOwl == "" :
             curOwl = f[0]
             p1 = [f[2], f[3]]
-            distanceFeature = np.append(f,  0 )
-            #result = np.append(result, distanceFeature)
+            distanceFeature = np.array(np.append(f,  0 ))
+            result.append(distanceFeature)
             
         else:
             if curOwl == f[0]:
@@ -50,41 +50,30 @@ def getDistances(table):
 
                 distance = computeDistance(p1, p2)
                 
-                distanceFeature = np.append(f, distance)
+                distanceFeature = np.array(np.append(f, distance))
                 p1 = p2
+                result.append(distanceFeature)
                 
             else:
                 curOwl = ""
-                distanceFeature = np.append(f, 0)
+                distanceFeature = np.array(np.append(f, 0))
+                result.append(distanceFeature)
     
         #print(distanceFeature)
         
         #print(np.append(result,[distanceFeature]))
         #temp = np.append(result, np.array(distanceFeature))
         
-        result =  np.column_stack((result,[distanceFeature]))
+        #result =  np.column_stack((result, distanceFeature))
         
-        #result = np.concatenate((result,distanceFeature))
+        
         
         
         if curOwl != '1751':
             break
     
     return result
-    
-    
-    
-    
-    
-    
-    
-    return result
-    
-    
-    
-    
-    
-    
+
     
     
     
