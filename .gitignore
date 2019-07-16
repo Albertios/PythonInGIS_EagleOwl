@@ -150,3 +150,5 @@ filteredOwlData.txt
 filteredOwlDataLines.csv
 test.txt
 filteredOwlData.csv
+*.csv
+*.txt

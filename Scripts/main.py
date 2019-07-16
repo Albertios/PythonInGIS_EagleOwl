@@ -11,8 +11,8 @@ os.system("python distances.py")
 os.system("python keepDataOverTenDays.py")
 
 # Working directory
-data_dir = os.path.join('D:\\', 'Repositories', 'PythonInGIS_EagleOwl', 'eagle_owl')
-#data_dir = os.path.join('/Users/Alf/Documents/GitHub', 'PythonInGIS_EagleOwl', 'eagle_owl', 'EagleOwlReinhardVohwinkelMPIO')
+#data_dir = os.path.join('D:\\', 'Repositories', 'PythonInGIS_EagleOwl', 'eagle_owl')
+data_dir = os.path.join('/Users/Alf/Documents/GitHub', 'PythonInGIS_EagleOwl', 'eagle_owl')
 
 def init():
     QgsProject.instance().removeAllMapLayers()
@@ -44,21 +44,32 @@ def main():
     fullTable = filteredOwlData(layer)
 
     print(len(fullTable))
+    
 
     minimizedTable = keepDataOverTenDays(fullTable)
+    
+    # output file direction
+    dir = "/Users/Alf/Documents/GitHub/PythonInGIS_EagleOwl/"
+
+    #output file name
+    output_file = open(dir + "minimizedTableUTF.csv", 'w')
+
+
+    for i,f in enumerate(minimizedTable):
+
+        line = str('%s, %s, %f, %f\n' % f)
+        unicode_line = line.encode('utf-8')
+        #unicode_line = line
+        #output_file.write(str(unicode_line))
+        output_file.write(unicode_line.decode("utf-8") )
+    
+    output_file.close()
 
     print(len(minimizedTable))
     
     distanceTable = getDistances(minimizedTable)
 
-    print(distanceTable[0])
-    print(distanceTable[1])
-    print(distanceTable[2])
-    print(distanceTable[3])
-    print(distanceTable[4])
-    print(distanceTable[5])
-    print(distanceTable[6])
-    print(distanceTable[7])
+
     
 main()
 
