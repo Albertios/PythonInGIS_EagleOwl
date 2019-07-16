@@ -41,9 +41,14 @@ def main():
     
     fullTable = filteredOwlData(layer)
     
-    #distanceTable = getDistances(fullTable)
+    distanceTable = getDistances(fullTable)
+    
+    print(distanceTable)
+    
+    print(distanceTable[0])
     
     
+    print(distanceTable[1])
     
 main()
 
