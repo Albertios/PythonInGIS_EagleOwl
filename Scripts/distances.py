@@ -58,7 +58,6 @@ def getDistances(table):
                 curOwl = ""
                 distanceFeature = np.array(np.append(f, 0))
                 result.append(distanceFeature)
-                print(distanceFeature)
     
         
     
