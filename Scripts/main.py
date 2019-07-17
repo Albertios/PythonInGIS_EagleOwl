@@ -43,19 +43,19 @@ def main():
     layer = iface.activeLayer()
     
     fullTable = filteredOwlData(layer)
-
+    print(len(fullTable))
     minimizedTable = keepDataOverTenDays(fullTable)
-
+    print(len(minimizedTable))
     global distanceTable    
     distanceTable = getDistances(minimizedTable)
     
-    global monthTable
-    monthTable = computeMonthTable(distanceTable)
+    #global monthTable
+    #monthTable = computeMonthTable(distanceTable)
 
     
     
 distanceTable = []
-monthTable = []
+#monthTable = []
 main()
 
 
