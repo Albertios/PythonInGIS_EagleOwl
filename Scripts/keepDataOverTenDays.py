@@ -7,37 +7,59 @@ def keepDataOverTenDays(fullTable):
     day = "00"
 
     dayCounter = 0
+    startDelete = 0
 
     for i, array in enumerate(fullTable):
 
         if id == array[0]:
             timeStampString = str(array[1])
-            
-            
-            if year == timeStampString[0:4]:
-
-                if month == timeStampString[5:7]:
-                    if day != timeStampString[8:10]:
+            yearStamp = timeStampString[0:4]
+            monthStamp = timeStampString[5:7]
+            dayStamp = timeStampString[8:10]
+            endDelete = i + 1
+            if year == yearStamp:
+                endDelete = i + 1
+                if month == monthStamp:
+                    endDelete = i + 1
+                    if day != dayStamp:
                         dayCounter +=1
-                        endDelete = i
-                        day = timeStampString[8:10]
+                        day = dayStamp
+                        endDelete = i + 1
+                        
                 else:
-                    month = timeStampString[5:7]
-                    day = timeStampString[8:10]
-                    endDelete = i-1
+                    month = monthStamp
+                    day = dayStamp
+                    endDelete = i + 1
                     if dayCounter < 10:
                         del(fullTable[startDelete:endDelete])
                         dayCounter = 0
                     startDelete = i
                     dayCounter = 0
             else:
-                year = timeStampString[0:4]
+                year = yearStamp
+                endDelete = i + 1
+                if dayCounter < 10:
+                    del(fullTable[startDelete:endDelete])
+                    dayCounter = 0
+                startDelete = i
+                dayCounter = 0
         else:
+            endDelete = i + 1
+            if dayCounter < 10 and id != "0":
+                del(fullTable[startDelete:endDelete])
+                dayCounter = 0
+            startDelete = i
+            dayCounter = 0
+            
             id = array[0]
             timeStampString = str(array[1])
-            year = timeStampString[0:4]
-            month = timeStampString[5:7]
-            day = timeStampString[8:10]
+            yearStamp = timeStampString[0:4]
+            monthStamp = timeStampString[5:7]
+            dayStamp = timeStampString[8:10]
+            
+            year = yearStamp
+            month = monthStamp
+            day = dayStamp
             
             
     #extra if statement to check the last values after the loop ends
@@ -46,3 +68,4 @@ def keepDataOverTenDays(fullTable):
         
     return(fullTable)
     
+
