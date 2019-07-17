@@ -48,7 +48,6 @@ def main():
     print(len(minimizedTable))
     global distanceTable    
     distanceTable = getDistances(minimizedTable)
-    
     global monthTable
     monthTable = computeMonthTable(distanceTable)
 
