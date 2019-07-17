@@ -49,13 +49,13 @@ def main():
     global distanceTable    
     distanceTable = getDistances(minimizedTable)
     
-    #global monthTable
-    #monthTable = computeMonthTable(distanceTable)
+    global monthTable
+    monthTable = computeMonthTable(distanceTable)
 
     
     
 distanceTable = []
-#monthTable = []
+monthTable = []
 main()
 
 

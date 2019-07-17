@@ -94,14 +94,65 @@ def getDailyTable(monthTable):
     
     return result
 
+
+
+def dailyAverage(dailyTable):
+    sum = 0
+    counter = 0
+    
+    for day in dailyTable:
+        sum += day[4]
+        counter += 1
+    
+    average = sum / counter
+    
+    return average
+
+
+
+
 def fillTable(dailyTable):
 
-    if len(dailyTable) < 28:
-        print("needRefill, length is: ", len(dailyTable))
+    noDays = len(dailyTable)
+    
+    if noDays < 28:
+        
+        id = dailyTable[0][0]
+        year = dailyTable[0][1]
+        month = dailyTable[0][2]
+        day = dailyTable[0][3]
+        average = dailyAverage(dailyTable)
+
+
+        
+        if month == "02":
+            while noDays < 28:
+                dailyTable.append([id,year,month,day,average])
+                noDays += 1
+        
+        if month == "01" or "03" or "05" or "07" or "08"  or "10"  or "12" :
+            while noDays < 31:
+                dailyTable.append([id,year,month,day,average])
+                noDays += 1
+        
+        if month == "04" or "06" or "09" or "11":
+            while noDays < 30:
+                dailyTable.append([id,year,month,day,average])
+                noDays += 1
+        
+        #print("needRefill, length is: ", len(dailyTable), "for Owl: ", dailyTable[0][0])
+        
         
         return dailyTable
     else:
         return dailyTable
+
+
+
+
+
+
+
 
 
 def getMonthDist(dailyFilled):
@@ -140,7 +191,7 @@ def getAllMonthOfOwl(curOwlTable):
             dailyTable = getDailyTable(curMonthTable)
 
             dailyFilled = fillTable(dailyTable)
-
+            
             monthWithDistance = getMonthDist(dailyFilled)
 
             result.append(monthWithDistance)
@@ -173,15 +224,10 @@ def computeMonthTable(input):
         
         
     
-    print(len(result))
-    print(result[0])
-    print(result[1])
-    print(result[2])
-    print(result[3])
     return result
     
 
-table = computeMonthTable(distanceTable)
+#table = computeMonthTable(distanceTable)
 
 
 
