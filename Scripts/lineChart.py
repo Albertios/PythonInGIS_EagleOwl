@@ -1,45 +1,84 @@
+import numpy as np
 import matplotlib.pyplot as plt
 
-
-
-
-def getOwl(monthTable):
-    
-    curOwl = ""
+def getOwl(monthTable, ID):
     result = []
     
+    for f in monthTable:
+        if f[0] == ID:
+            result.append(f)
+    return result
+
+
+def visualizeLine(monthTable):
+    x = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
+    
+    tempOwl = monthTable[0][0]
+    
+    legend = []
     for feature in monthTable:
-        curOwl = feature[0]
-        print(feature)
-        
-        
-
-        
-        #if feature[0] != 1751:
-        #    temp = []
-        #    break
-        
-
-
-def visualizeOwls(monthTable):
-    year = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
+        curOwl = [np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan]
     
-    getOwl(monthTable)
+        owl = feature[0]
+        
+        
+        if owl != tempOwl:
+            
+            tempOwl = owl
+            t = getOwl(monthTable, feature[0])
+            
+            if len(t) > 1 :
+                legend.append(str(owl))
 
+                for i in t:
+                    
+                    month = i[2]
+                    
+                    if month == "01":
+                        curOwl[0] = i[3]
+                    if month == "02":
+                        curOwl[1] = i[3]
+                    if month == "03":
+                        curOwl[2] = i[3]
+                    if month == "04":
+                        curOwl[3] = i[3]
+                    if month == "05":
+                        curOwl[4] = i[3]
+                    if month == "06":
+                        curOwl[5] = i[3]
+                    if month == "07":
+                        curOwl[6] = i[3]
+                    if month == "08":
+                        curOwl[7] = i[3]
+                    if month == "09":
+                        curOwl[8] = i[3]
+                    if month == "10":
+                        curOwl[9] = i[3]
+                    if month == "11":
+                        curOwl[10] = i[3]
+                    if month == "12":
+                        curOwl[11] = i[3]
+        
+    
+            y = curOwl
+            global lines
+            lines.append(y)
+            plt.plot(x, y)
+        
+        
 
-    pop_pakistan = [44.91, 58.09, 78.07, 107.7, 138.5, 170.6, 170.6, 170.6, 170.6, 170.6, 170.6, 170.6]
-    pop_india = [449.48, 553.57, 696.783, 870.133, 1000.4, 1309.1, 170.6, 170.6, 170.6, 170.6, 170.6, 170.6]
-
-
-
-
-
-    plt.plot(year, pop_pakistan, color='g')
-    plt.plot(year, pop_india, color='orange')
+    plt.legend(legend, loc=2)
     plt.xlabel('Month')
-    plt.ylabel('Total Distance (km)')
-    plt.title('Distance Per month')
+    plt.ylabel('Total Flight Distance [km]')
+    plt.title('Individual Eagle Owl Flight Distance (2011 - 2017)')
     plt.show()
+    return lines
     
     
-visualizeOwls(monthTable)
+    
+
+lines = []    
+visualizeLine(monthTable)
+
+#for i in monthTable:
+#    print(i)

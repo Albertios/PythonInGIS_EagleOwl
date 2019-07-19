@@ -142,9 +142,10 @@ def fillTable(dailyTable):
         
         #print("needRefill, length is: ", len(dailyTable), "for Owl: ", dailyTable[0][0])
         
-        
         return dailyTable
+        
     else:
+        
         return dailyTable
 
 
@@ -227,8 +228,10 @@ def computeMonthTable(input):
     return result
     
 
-#table = computeMonthTable(distanceTable)
+table = computeMonthTable(distanceTable)
 
+for i in table:
+    print(i)
 
 
 

@@ -223,16 +223,13 @@ def fillMonths(monthTable, months):
         
     return months
     
-    
-    
-
 
 months = fillMonths(monthTable, months)
 
 
 X = np.arange(12)
 
-curOwl = [0,0,0,0,0,0,0,0,0,0,0,0]
+curOwl = [np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,np.nan,]
 counter = 0
 
 tempOwl = "0"
@@ -251,7 +248,6 @@ for feature in monthTable:
         for i in t:
             
             month = i[2]
-
             
             if month == "01":
                 curOwl[0] = i[3]
@@ -278,33 +274,21 @@ for feature in monthTable:
             if month == "12":
                 curOwl[11] = i[3]
             
-            
-            
+        
         col = cnames[counter]
         if lastOwl == "none":
             plt.bar(X, curOwl, color = col)
         else:
             plt.bar(X, curOwl, color = col, bottom = lastOwl)
+            
         lastOwl = curOwl
-        print(counter)
+
         counter = counter + 5
 
 
 
 
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
