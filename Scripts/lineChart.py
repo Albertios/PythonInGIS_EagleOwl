@@ -27,7 +27,7 @@ def visualizeLine(monthTable):
             tempOwl = owl
             t = getOwl(monthTable, feature[0])
             
-            if len(t) > 1 :
+            if len(t) > 4 :
                 legend.append(str(owl))
 
                 for i in t:
@@ -60,10 +60,10 @@ def visualizeLine(monthTable):
                         curOwl[11] = i[3]
         
     
-            y = curOwl
-            global lines
-            lines.append(y)
-            plt.plot(x, y)
+                y = curOwl
+                global lines
+                lines.append(y)
+                plt.plot(x, y)
         
         
 
