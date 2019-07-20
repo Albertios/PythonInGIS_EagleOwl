@@ -38,18 +38,24 @@ def init():
 
 def main():
     
+    #loading shape file
     init()
-    
     layer = iface.activeLayer()
     
+    #Pre-Processing
     fullTable = filteredOwlData(layer)
     print(len(fullTable))
     minimizedTable = keepDataOverTenDays(fullTable)
     print(len(minimizedTable))
+    
+    #Processing
     global distanceTable    
     distanceTable = getDistances(minimizedTable)
     global monthTable
     monthTable = computeMonthTable(distanceTable)
+    
+    #Visualization
+    stackBarPlot(monthTable)
 
     
     

@@ -25,8 +25,6 @@
 
 def filteredOwlData(layer):
     
-#layer = iface.activeLayer()
-    
     owlIdTimestampXY = []
     
     #goes through layer and save the ID, timestamp, coordiantes into 2D array
